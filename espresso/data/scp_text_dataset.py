@@ -223,17 +223,7 @@ class AsrTextDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, i):
         self.check_index(i)
-        return self.tensor_list[i]
-
-    def get_original_tokens(self, i):
-        self.check_index(i)
-        return self.tokens_list[i]
-
-    def get_original_text(self, i, dictionary, bpe_symbol=None):
-        self.check_index(i)
-        return dictionary.tokens_to_sentence(
-            self.tokens_list[i], use_unk_sym=False, bpe_symbol=bpe_symbol,
-        )
+        return self.tensor_list[i], self.tokens_list[i]
 
     def __len__(self):
         return self.size
